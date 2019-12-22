@@ -7,12 +7,14 @@ public class Vehicle implements Comparable<Vehicle>{
 
     @SerializedName("car_type")
     String carType;
+    String supplierId;
     float price;
     int maxPassengers;
 
-    public Vehicle(String carType, int price) {
+    public Vehicle(String carType, String supplierId, int price) {
         this.carType = carType;
         this.price = price;
+        this.supplierId = supplierId;
         switch (carType){
             case "STANDARD":
                 this.maxPassengers = 4;

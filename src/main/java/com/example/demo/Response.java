@@ -4,16 +4,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Response {
+class Response {
     String body;
     int code;
 
-    public Response(String body, int code) {
+    Response(String body, int code) {
         this.body = body;
         this.code = code;
     }
 
-    public Supplier parseJson(int passengers){
+    Supplier parseJson(int passengers){
 
         try {
             JSONObject jsonObject = new JSONObject(this.body);
@@ -24,7 +24,7 @@ public class Response {
                 JSONObject jsonObjectArray = jsonArray.getJSONObject(i);
                 String carType = jsonObjectArray.getString("car_type");
                 int price = jsonObjectArray.getInt("price");
-                Vehicle vehicle = new Vehicle(carType,price);
+                Vehicle vehicle = new Vehicle(carType, supplierID, price);
                 supplier.addVehicles(vehicle, passengers);
             }
             return supplier;
