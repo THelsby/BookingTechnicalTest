@@ -1,17 +1,10 @@
 package com.example.demo;
 
-import com.sun.javafx.binding.StringFormatter;
-
 import java.util.ArrayList;
 
-/**
- * Skeleton for requesting the techtest API.
- */
 class RequestFactory {
 
-
-    /**
-     * Takes in the parameters for the API and returns an ArrayList of Suppliers and their corresponding vehicles.
+    /**Takes in the parameters for the API and returns an ArrayList of Suppliers and their corresponding vehicles.
      * @param latitude
      * @param longitude
      * @param passengers
@@ -19,9 +12,29 @@ class RequestFactory {
      */
     ArrayList<Supplier> initRequest(LatLong latitude, LatLong longitude, int passengers){
         final String[] URLS = {"dave", "eric", "jeff"};
+        return setupRequest(latitude, longitude, passengers, URLS);
+    }
 
+    /**Takes in the parameters for the API and returns an ArrayList of Suppliers and their corresponding vehicles.
+     * @param latitude
+     * @param longitude
+     * @return
+     */
+    ArrayList<Supplier> initRequest(LatLong latitude, LatLong longitude) {
+        final String[] URLS = {"dave"};
+        return setupRequest(latitude, longitude, 0, URLS);
+    }
+
+    /**Skeleton for requesting the techtest API.
+     * @param latitude
+     * @param longitude
+     * @param passengers
+     * @param urls
+     * @return
+     */
+    private ArrayList<Supplier> setupRequest(LatLong latitude, LatLong longitude, int passengers, String[] urls){
         ArrayList<Supplier> suppliers = new ArrayList<>();
-        for (String url : URLS) {
+        for (String url : urls) {
             RequestAPI requestAPI = new RequestAPI(latitude, longitude, url);
             Response response = requestAPI.httpRequest();
             System.out.println(response.body);
@@ -30,19 +43,6 @@ class RequestFactory {
             } else {
                 System.out.println(String.format("Failed to retrieve results from = %s - Response code = %d", url, response.code));
             }
-        }
-        return suppliers;
-    }
-
-    public ArrayList<Supplier> initRequest(LatLong latitude, LatLong longitude) {
-        ArrayList<Supplier> suppliers = new ArrayList<>();
-        RequestAPI requestAPI = new RequestAPI(latitude, longitude, "dave");
-        Response response = requestAPI.httpRequest();
-        System.out.println(response.body);
-        if (response.code == 200) {
-            suppliers.add(response.parseJson(0));
-        } else {
-            System.out.println(String.format("Failed to retrieve results from = dave - Response code = %d", response.code));
         }
         return suppliers;
     }
