@@ -33,4 +33,17 @@ class RequestFactory {
         }
         return suppliers;
     }
+
+    public ArrayList<Supplier> initRequest(LatLong latitude, LatLong longitude) {
+        ArrayList<Supplier> suppliers = new ArrayList<>();
+        RequestAPI requestAPI = new RequestAPI(latitude, longitude, "dave");
+        Response response = requestAPI.httpRequest();
+        System.out.println(response.body);
+        if (response.code == 200) {
+            suppliers.add(response.parseJson(0));
+        } else {
+            System.out.println(String.format("Failed to retrieve results from = dave - Response code = %d", response.code));
+        }
+        return suppliers;
+    }
 }
