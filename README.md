@@ -24,3 +24,4 @@ Clone the repository: git clone https://github.com/THelsby/Submission-BookingGo.
 
 `Using IntelliJ run.
 Open up web browser of your choice and head to http://127.0.0.1:8080/pickupLat=12.23042&pickupLong=-2.32023&dropoffLat=23.30492&dropoffLong=2.340234&passengers=4
+`
