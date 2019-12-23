@@ -17,18 +17,22 @@ public class Supplier {
         this.supplierID = supplierID;
     }
 
+    /**
+     * Checks if the passenger requirement meets the demand and adds it to the Array if so.
+     * @param vehicle
+     * @param passengers
+     */
     void addVehicles(Vehicle vehicle, int passengers){
         if(vehicle.maxPassengers >= passengers) {
             vehicles.add(vehicle);
         }
     }
 
+    /**
+     * Sorts the ArrayList of vehicles by price.
+     */
     void sort() {
         Collections.sort(this.vehicles);
-    }
-
-    public ArrayList<Vehicle> getAllVehicles(){
-        return new ArrayList<>(this.vehicles);
     }
 
 

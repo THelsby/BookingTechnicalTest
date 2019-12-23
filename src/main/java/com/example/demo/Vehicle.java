@@ -11,7 +11,12 @@ public class Vehicle implements Comparable<Vehicle>{
     float price;
     int maxPassengers;
 
-    public Vehicle(String carType, String supplierId, int price) {
+    /**Constructor to create Vehicles which checks the vehicle type and sets the max passengers.
+     * @param carType
+     * @param supplierId
+     * @param price
+     */
+    Vehicle(String carType, String supplierId, int price) {
         this.carType = carType;
         this.price = price;
         this.supplierId = supplierId;
@@ -37,6 +42,10 @@ public class Vehicle implements Comparable<Vehicle>{
         }
     }
 
+    /** Used in the sort method to compare the vehicles by price
+     * @param o
+     * @return
+     */
     @Override
     public int compareTo(@NotNull Vehicle o) {
         return Float.compare(price, o.price);

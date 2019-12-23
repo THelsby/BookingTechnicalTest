@@ -10,6 +10,10 @@ import java.util.Map;
 @SpringBootApplication
 public class Driver {
 
+    /**
+     * Main method which checks argument length to decide whether to run commandline version or SpringApplication
+     * @param args
+     */
     public static void main(String[] args) {
         if(args.length == 0) {
             SpringApplication.run(Driver.class, args);

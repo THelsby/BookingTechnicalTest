@@ -13,6 +13,11 @@ class Response {
         this.code = code;
     }
 
+    /**
+     * Parses the body of the response and generates the corresponding objects.
+     * @param passengers
+     * @return
+     */
     Supplier parseJson(int passengers){
 
         try {

@@ -1,10 +1,22 @@
 package com.example.demo;
 
+import com.sun.javafx.binding.StringFormatter;
+
 import java.util.ArrayList;
 
+/**
+ * Skeleton for requesting the techtest API.
+ */
 class RequestFactory {
 
 
+    /**
+     * Takes in the parameters for the API and returns an ArrayList of Suppliers and their corresponding vehicles.
+     * @param latitude
+     * @param longitude
+     * @param passengers
+     * @return
+     */
     ArrayList<Supplier> initRequest(LatLong latitude, LatLong longitude, int passengers){
         final String[] URLS = {"dave", "eric", "jeff"};
 
@@ -16,7 +28,7 @@ class RequestFactory {
             if (response.code == 200) {
                 suppliers.add(response.parseJson(passengers));
             } else {
-                System.out.println("Response code = " + response.code);
+                System.out.println(String.format("Failed to retrieve results from = %s - Response code = %d", url, response.code));
             }
         }
         return suppliers;

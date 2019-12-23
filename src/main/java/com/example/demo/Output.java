@@ -12,6 +12,10 @@ class Output {
     private HashMap<String, Vehicle> cheapestOptions = new HashMap<>();
     private ArrayList<Supplier> suppliers;
 
+    /**
+     * Constructor for output which  generates a HashMap which is later populated with the lowest pricing vehicles.
+     * @param suppliers
+     */
     Output(ArrayList<Supplier> suppliers){
         this.suppliers = suppliers;
         this.cheapestOptions.put("STANDARD", null);
@@ -22,7 +26,11 @@ class Output {
         this.cheapestOptions.put("MINIBUS", null);
     }
 
-    public HashMap<String, Vehicle> calculateCheapestVehicles(){
+    /**
+     * Loops through each supplier and compares the vehicle type with the vehicle being stored in the HashMap
+     * by price, with the lowest price taking the place in the HashMap.
+     */
+    private void calculateCheapestVehicles(){
         for (Supplier supplier : suppliers) {
             supplier.sort();
             for (Vehicle vehicle : supplier.vehicles) {
@@ -33,9 +41,11 @@ class Output {
                 }
             }
         }
-        return cheapestOptions;
     }
 
+    /**
+     * Loops through the HashMap of cheapest vehicles and prints out not null vehicles.
+     */
     void printCheapestVehicles(){
         calculateCheapestVehicles();
         for (Map.Entry<String, Vehicle> vehicleEntry : cheapestOptions.entrySet()) {
@@ -46,7 +56,11 @@ class Output {
         }
     }
 
-    public JSONArray cheapestVehicleToJson(){
+    /**
+     * Creates a JSONArray of JSONObjects from the cheapest vehicle HashMap and returns it as a string.
+     * @return JsonArray
+     */
+    String cheapestVehicleToJson(){
         calculateCheapestVehicles();
         JSONArray jsonArray = new JSONArray();
         for (Map.Entry<String, Vehicle> vehicleEntry : cheapestOptions.entrySet()) {
@@ -63,7 +77,7 @@ class Output {
                 }
             }
         }
-        return jsonArray;
+        return jsonArray.toString();
     }
 
 }

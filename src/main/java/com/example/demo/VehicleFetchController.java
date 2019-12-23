@@ -10,14 +10,22 @@ import java.util.ArrayList;
 @RestController
 public class VehicleFetchController {
 
+    /**
+     * Creates the end point for user to access the API and returns a JSON.
+     * @param pickupLat
+     * @param pickupLong
+     * @param dropoffLat
+     * @param dropoffLong
+     * @param passengers
+     * @return
+     */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String serviceCallRest(@RequestParam(name = "pickupLat") float pickupLat, @RequestParam(name = "pickupLong") float pickupLong,
                                   @RequestParam(name = "dropoffLat") float dropoffLat, @RequestParam(name = "dropoffLong") float dropoffLong,
                                   @RequestParam(name = "passengers") int passengers){
         RequestFactory requestFactory = new RequestFactory();
-        System.out.println("pickupLat = " + pickupLat + "pickupLong = " + pickupLong + "dropoffLat = " + dropoffLat + "dropofflong = " + dropoffLong + "passengers = " + passengers );
         ArrayList<Supplier> suppliers = requestFactory.initRequest(new LatLong(pickupLat,pickupLong), new LatLong(dropoffLat,dropoffLong), passengers);
         Output output = new Output(suppliers);
-        return output.cheapestVehicleToJson().toString();
+        return output.cheapestVehicleToJson();
     }
 }
