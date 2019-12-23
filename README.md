@@ -6,6 +6,7 @@ Java - 1.8.0 Apache Maven 3.6.1
 
 I used IntelliJ 2017.2.5 during the development process.
 
+Clone the repository: git clone https://github.com/THelsby/Submission-BookingGo.git
 ```
 
 ## Part 1
